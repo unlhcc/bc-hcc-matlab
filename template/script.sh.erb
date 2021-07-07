@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 <%- gpu = context.node_type.include?("vis") -%>
 
@@ -30,7 +30,7 @@ cd "${HOME}"
 #
 
 # Load the required environment
-module load xalt/latest <%= context.version %>
+module load <%= context.version %>
 
 # Launch MATLAB
 <%- if gpu -%>
