@@ -2,11 +2,11 @@
 cores = bc_num_cores.blank? ? 1 : bc_num_cores.to_i
 mem = bc_memory.blank? ? 1 : bc_memory.to_i
 nodes = bc_num_slots.blank? ? 1 : bc_num_slots.to_i
-image = case desktop
-        when "xfce"
-          "/work/HCC/SINGULARITY/IMAGES/xfce_ood.sif"
-        else
-          "/work/HCC/SINGULARITY/IMAGES/mate_ood.sif"
+image = case matlab_version.split(':')[1]
+        when "el7"
+          "/work/HCC/SINGULARITY/IMAGES/xfce_el7.sif"
+        when "el8"
+          "/work/HCC/SINGULARITY/IMAGES/xfce_el8.sif"
         end
 
 %>

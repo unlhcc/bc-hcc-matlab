@@ -1,6 +1,19 @@
 #!/bin/bash
+<%-
+ matlab_module = context.matlab_version.split(':')[0]
+ case matlab_module
+ when "matlab/r2018a"
+   addl_args="-softwareopengl"
+ else
+   addl_args=""
+ end
+%>
 
-<%- gpu = context.node_type.include?("vis") -%>
+# init lmod within container
+# # the lmod profile file are named differently on EL7 vs EL8
+# # don't ask me why
+[[ -f /etc/profile.d/z00_lmod.sh ]] && source /etc/profile.d/z00_lmod.sh
+[[ -f /etc/profile.d/modules.sh ]] && source /etc/profile.d/modules.sh
 
 # Clean the environment
 module purge
@@ -30,16 +43,16 @@ cd "${HOME}"
 #
 
 # Load the required environment
-module load <%= context.version %>
+module load <%= matlab_module %>
 
 # Launch MATLAB
-<%- if gpu -%>
-module load intel/16.0.3 virtualgl
 module list
 set -x
-vglrun matlab -desktop -nosoftwareopengl
-<%- else -%>
-module list
-set -x
-matlab -desktop
-<%- end -%>
+
+( 
+  sleep 30
+  wmctrl -l
+  wmctrl -r matlab -b add,maximized_vert,maximized_horz
+) &
+pwd
+matlab -desktop -nosoftwareopengl <%= addl_args %>
