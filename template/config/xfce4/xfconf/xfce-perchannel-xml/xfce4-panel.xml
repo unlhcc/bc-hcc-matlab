@@ -7,7 +7,7 @@
     <property name="panel-1" type="empty">
       <property name="position" type="string" value="p=6;x=99;y=24"/>
       <property name="position-locked" type="bool" value="true"/>
-      <property name="size" type="uint" value="48"/>
+      <property name="size" type="uint" value="32"/>
       <property name="length" type="uint" value="100"/>
       <property name="length-adjust" type="bool" value="false"/>
       <property name="plugin-ids" type="array">
@@ -37,7 +37,7 @@
     <property name="plugin-1" type="string" value="applicationsmenu">
       <property name="show-generic-names" type="bool" value="true"/>
       <property name="show-menu-icons" type="bool" value="true"/>
-      <property name="button-icon" type="string" value="fedora-logo-icon"/>
+      <property name="button-icon" type="string" value="nebraska-n"/>
       <property name="show-tooltips" type="bool" value="true"/>
     </property>
   </property>
