@@ -2,10 +2,10 @@
 <%-
  matlab_module = context.matlab_version.split(':')[0]
  case matlab_module
- when "matlab/r2018a"
+ when "matlab/r2018b"
    addl_args="-softwareopengl"
  else
-   addl_args=""
+   addl_args="-nosoftwareopengl"
  end
 %>
 
@@ -60,4 +60,4 @@ wmctrl -r MATLAB -b add,maximized_vert,maximized_horz
 # Launch MATLAB
 module list
 set -x
-matlab -desktop -nosoftwareopengl <%= addl_args %>
+matlab -desktop <%= addl_args %>
