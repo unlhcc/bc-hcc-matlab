@@ -46,11 +46,14 @@ cd "${HOME}"
 module load <%= matlab_module %>
 
 # The GUI takes a while to start
-# Wait a bit and then try to maximize the window
-( 
-  sleep 40
-  wmctrl -l
-  wmctrl -r matlab -b add,maximized_vert,maximized_horz
+# Loop until it's there and then try to maximize the window (thanks John!)
+(
+while true ; do
+    wmctrl -l | grep -i 'MATLAB R'
+    if [ $? -eq 0 ]; then break; fi
+    sleep 1
+done
+wmctrl -r MATLAB -b add,maximized_vert,maximized_horz
 ) &
 
 # Launch MATLAB
