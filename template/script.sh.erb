@@ -30,6 +30,9 @@ cd "${HOME}"
   export XDG_CONFIG_HOME="<%= session.staged_root.join("config") %>"
   export XDG_DATA_HOME="<%= session.staged_root.join("share") %>"
   export XDG_CACHE_HOME="$(mktemp -d)"
+  export XDG_RUNTIME_DIR="$(mktemp -d)"
+  export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/var/run/dbus/system_bus_socket
+  export `dbus-launch`
   module restore
   set -x
   xfwm4 --compositor=off --daemon --sm-client-disable &
