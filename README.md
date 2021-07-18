@@ -1,6 +1,6 @@
 # Batch Connect - HCC MATLAB
 
-![GitHub Release](https://img.shields.io/github/release/osc/bc_osc_matlab.svg)
+[![pipeline status](https://git.unl.edu/hcc/bc-hcc-matlab/badges/master/pipeline.svg)](https://git.unl.edu/hcc/bc-hcc-matlab/-/commits/master)
 [![GitHub License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 A Batch Connect app designed for OSC OnDemand that launches MATLAB within an
