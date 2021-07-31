@@ -6,6 +6,8 @@
 A Batch Connect app designed for OSC OnDemand that launches MATLAB within an
 SLURM batch job.
 
+Based off of https://github.com/OSC/bc_osc_matlab.
+
 ## Prerequisites
 
 This Batch Connect app requires the following software be available on the
