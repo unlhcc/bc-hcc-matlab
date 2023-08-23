@@ -91,9 +91,15 @@ e
       - [ "R2022a", "matlab/r2022a:el8" ]
       - [ "R2022b", "matlab/r2022b:el8" ]
       - [ "R2023a", "matlab/r2023a:el8" ]
+  addl_modules:
+    label: "Additional modules (optional)"
+    help: |
+        <small>Space separated list of additional modules to load (eg. `ffmpeg/4.4`)</br/>
+        Full list for [Swan](https://hcc.unl.edu/docs/applications/modules/available_software_for_swan/)</small>
 
 form:
   - matlab_version
+  - addl_modules
   - desktop
   - bc_vnc_idle
   - bc_vnc_resolution
