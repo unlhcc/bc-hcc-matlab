@@ -21,6 +21,7 @@ batch_connect:
     export APPTAINER_CACHEDIR=${WORK}/.apptainer
     export REGISTRY="hcc-docker-registry.unl.edu"
     cat << "CTRSCRIPT" > container.sh
+    cat /etc/passwd.system >> /etc/passwd
     export PATH="${PATH}:/opt/TurboVNC/bin:/util/opt/bin"
     export XFCE_ROOT="/"
     touch $HOME/.cache/sessions/xfce4-session-`hostname`:1
