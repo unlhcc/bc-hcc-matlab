@@ -37,7 +37,31 @@ batch_connect:
     export PS1="[\u@\h. \W]\$ "
     BASE
     chmod +x /tmp/99-base.sh
-    export APPTAINER_BINDPATH="/home,/work,/util,/media,/mnt,/srv,/var/run,/run,/tmp/99-base.sh:/.singularity.d/env/99-base.sh:ro"
+
+    SLURM_BIND_MOUNTS=""
+    # SLURM ######################################################################
+    SLURM_BIND_MOUNTS+=",/etc/slurm/slurm.conf"
+    SLURM_BIND_MOUNTS+=",/usr/lib64/slurm"
+    for F in $( rpm -ql slurm | grep '^/usr/lib64/lib' ) ; do
+      SLURM_BIND_MOUNTS+=",$F"
+    done
+    for F in $( rpm -ql slurm | grep '^/usr/bin/' ) ; do
+      SLURM_BIND_MOUNTS+=",$F"
+    done
+
+    # MUNGE ######################################################################
+    SLURM_BIND_MOUNTS+=",/var/run/munge"
+    for F in $( rpm -ql munge-libs | grep '^/usr/lib64/lib' ) ; do
+      SLURM_BIND_MOUNTS+=",$F"
+    done
+
+    ##############################################################################
+    # Use system SSSD and include password file for local entries (e.g. slurm, munge)
+    SLURM_BIND_MOUNTS+=",/var/lib/sss/pipes"
+    SLURM_BIND_MOUNTS+=",/var/lib/sss/mc"
+    SLURM_BIND_MOUNTS+=",/etc/passwd:/etc/passwd.system"
+
+    export APPTAINER_BINDPATH="/home,/work,/util,/media,/mnt,/srv,/var/run,/run,/tmp/99-base.sh:/.singularity.d/env/99-base.sh:ro,$SLURM_BIND_MOUNTS"
     apptainer exec -B ${TMPDIR}:/tmp <%= image %> /bin/bash container.sh
 
 script:
